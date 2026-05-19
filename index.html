@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PCCOE Virtual Lab</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#f4f7fb;
+overflow-x:hidden;
+}
+
+/* INTRO PAGE */
+
+#introPage{
+
+height:100vh;
+
+background:
+linear-gradient(rgba(0,0,50,0.8),rgba(0,0,80,0.9)),
+url('https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?q=80&w=1600&auto=format&fit=crop');
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+padding:20px;
+text-align:center;
+color:white;
+}
+
+.intro-content{
+
+background:rgba(255,255,255,0.08);
+
+padding:50px;
+
+border-radius:20px;
+
+backdrop-filter:blur(10px);
+
+max-width:900px;
+}
+
+.intro-content img{
+width:130px;
+background:white;
+border-radius:50%;
+padding:8px;
+margin-bottom:20px;
+}
+
+.intro-content h1{
+font-size:55px;
+margin-bottom:10px;
+}
+
+.intro-content h2{
+font-size:30px;
+margin-bottom:25px;
+font-weight:400;
+}
+
+.intro-content p{
+font-size:20px;
+line-height:1.8;
+}
+
+.enter-btn{
+
+margin-top:30px;
+
+padding:16px 35px;
+
+background:#00bfff;
+
+border:none;
+
+border-radius:10px;
+
+font-size:20px;
+
+color:white;
+
+cursor:pointer;
+transition:0.3s;
+}
+
+.enter-btn:hover{
+background:#009acd;
+transform:scale(1.05);
+}
+
+#mainWebsite{
+display:none;
+}
+
+/* HEADER */
+
+header{
+
+background:#001f3f;
+
+padding:15px 5%;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+position:sticky;
+
+top:0;
+
+z-index:1000;
+}
+
+.logo-container{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo-container img{
+width:85px;
+height:85px;
+background:white;
+border-radius:50%;
+padding:5px;
+}
+
+.logo-text h1{
+color:white;
+font-size:28px;
+}
+
+.logo-text p{
+color:#ddd;
+font-size:14px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:25px;
+font-weight:500;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#00bfff;
+}
+
+/* HERO */
+
+.hero{
+
+height:90vh;
+
+background:
+linear-gradient(rgba(0,0,40,0.7),rgba(0,0,70,0.8)),
+url('https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=1600&auto=format&fit=crop');
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.hero-content{
+max-width:900px;
+}
+
+.hero h2{
+font-size:60px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:22px;
+line-height:1.8;
+margin-bottom:30px;
+}
+
+.hero button{
+
+padding:15px 35px;
+
+background:#00bfff;
+
+border:none;
+
+border-radius:10px;
+
+font-size:18px;
+
+color:white;
+
+cursor:pointer;
+transition:0.3s;
+}
+
+.hero button:hover{
+background:#009acd;
+transform:scale(1.05);
+}
+
+/* SECTION */
+
+.section{
+padding:80px 10%;
+}
+
+.section-title{
+
+font-size:42px;
+
+text-align:center;
+
+margin-bottom:35px;
+
+color:#001f3f;
+}
+
+.card{
+
+background:white;
+
+padding:35px;
+
+border-radius:15px;
+
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+
+margin-top:20px;
+}
+
+.card p{
+font-size:18px;
+line-height:1.9;
+margin-bottom:15px;
+}
+
+/* FORMULA IMAGES */
+
+.simple-formula-image,
+.math-formula-image{
+
+background:#eef7ff;
+
+padding:30px;
+
+border-radius:12px;
+
+margin-top:25px;
+margin-bottom:25px;
+
+border-left:6px solid #00aaff;
+
+text-align:center;
+}
+
+.simple-formula-image img{
+width:420px;
+max-width:100%;
+}
+
+.math-formula-image img{
+width:500px;
+max-width:100%;
+}
+
+/* INPUT */
+
+label{
+display:block;
+font-weight:600;
+margin-top:15px;
+margin-bottom:8px;
+}
+
+input{
+
+width:100%;
+
+padding:15px;
+
+border-radius:8px;
+
+border:1px solid #ccc;
+
+font-size:16px;
+
+margin-bottom:15px;
+}
+
+.calc-btn{
+
+padding:15px 30px;
+
+background:#001f3f;
+
+border:none;
+
+border-radius:10px;
+
+font-size:18px;
+
+color:white;
+
+cursor:pointer;
+
+margin-right:10px;
+margin-top:10px;
+transition:0.3s;
+}
+
+.calc-btn:hover{
+background:#003b75;
+}
+
+.result{
+
+margin-top:25px;
+
+font-size:28px;
+
+font-weight:600;
+
+color:#003b75;
+}
+
+/* QUIZ */
+
+.quiz-start{
+text-align:center;
+}
+
+.quiz-start button{
+padding:18px 40px;
+font-size:20px;
+background:#001f3f;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+#quizInterface{
+display:none;
+margin-top:40px;
+}
+
+.score-box{
+
+position:sticky;
+top:100px;
+
+float:right;
+
+background:#001f3f;
+color:white;
+
+padding:15px 25px;
+
+border-radius:10px;
+
+font-size:22px;
+font-weight:600;
+}
+
+.question{
+margin-bottom:40px;
+}
+
+.question button{
+
+display:block;
+
+width:100%;
+
+padding:14px;
+
+margin-top:10px;
+
+background:#001f3f;
+
+border:none;
+
+border-radius:8px;
+
+color:white;
+
+cursor:pointer;
+}
+
+.show-answer{
+background:#00aaff !important;
+}
+
+.answer-box{
+margin-top:10px;
+font-weight:600;
+color:#003b75;
+display:none;
+}
+
+/* FOOTER */
+
+footer{
+
+background:#001f3f;
+
+color:white;
+
+text-align:center;
+
+padding:35px;
+
+margin-top:50px;
+}
+
+canvas{
+margin-top:40px;
+background:white;
+border-radius:10px;
+}
+
+@media(max-width:900px){
+
+header{
+flex-direction:column;
+text-align:center;
+}
+
+nav{
+margin-top:15px;
+}
+
+.hero h2{
+font-size:40px;
+}
+
+.intro-content h1{
+font-size:38px;
+}
+
+.score-box{
+float:none;
+margin-bottom:30px;
+text-align:center;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- INTRO -->
+
+<section id="introPage">
+
+<div class="intro-content">
+
+<img src="pccoe.png">
+
+<h1>PCCOE Virtual Lab</h1>
+
+<h2>Applications of Double Integration (Area)</h2>
+
+<p><b>Developed By:</b></p>
+
+<p>Aaradhya Dhenge — 125B1D033</p>
+<p>Angel Sachdev — 125B1D042</p>
+<p>Suraj Mehesare — 125B1D043</p>
+
+<br>
+
+<p><b>Guided By:</b> Amruta Patil Mam</p>
+
+<button class="enter-btn" onclick="enterWebsite()">
+Enter Website
+</button>
+
+</div>
+
+</section>
+
+<!-- MAIN WEBSITE -->
+
+<div id="mainWebsite">
+
+<header>
+
+<div class="logo-container">
+
+<img src="pccoe.png">
+
+<div class="logo-text">
+
+<h1>PCCOE Virtual Lab</h1>
+<p>Applications of Double Integration</p>
+
+</div>
+
+</div>
+
+<nav>
+
+<a href="#theory">Theory</a>
+<a href="#formulaSec">Formula</a>
+<a href="#simulation">Simulation</a>
+<a href="#quiz">Quiz</a>
+<a href="#viva">Viva</a>
+
+</nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h2>Applications of Double Integration</h2>
+
+<p>
+
+Explore how double integration calculates
+the area enclosed between curves using
+interactive graphical visualization.
+
+</p>
+
+<button onclick="document.getElementById('simulation').scrollIntoView()">
+
+Start Experiment
+
+</button>
+
+</div>
+
+</section>
+
+<!-- THEORY -->
+
+<section class="section" id="theory">
+
+<h2 class="section-title">Theory</h2>
+
+<div class="card">
+
+<p>
+
+Double integration is an advanced mathematical technique
+used to evaluate quantities over a two-dimensional region.
+Unlike single integration which calculates quantities along
+a line, double integration helps in determining area,
+surface distribution and physical properties over a plane region.
+
+</p>
+
+<p>
+
+The concept of double integration plays a major role in
+engineering mathematics, physics, computer graphics,
+machine learning and fluid mechanics.
+It is mainly used for calculating the area enclosed
+between two curves.
+
+</p>
+
+<p>
+
+When two curves intersect, they create a bounded region.
+The area enclosed inside these curves can be obtained
+by integrating the upper function and subtracting
+the lower function within the given limits.
+
+</p>
+
+<div class="simple-formula-image">
+
+<img src="image(4).png">
+
+</div>
+
+<p>
+
+In Cartesian coordinates, the area is represented
+using a small element called dA.
+The limits of integration define the exact region
+where integration is performed.
+
+</p>
+
+<p>
+
+Double integration is also used in:
+<br><br>
+
+• Finding center of mass<br>
+• Surface area calculation<br>
+• Volume under surfaces<br>
+• Probability distributions<br>
+• Electrostatic field calculations<br>
+• Heat transfer analysis<br>
+• Engineering design simulations
+
+</p>
+
+<p>
+
+Graphical representation of the bounded region
+helps students understand the concept more effectively.
+The shaded area between the curves visually represents
+the region over which integration is performed.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- FORMULA -->
+
+<section class="section" id="formulaSec">
+
+<h2 class="section-title">Formula & Concept</h2>
+
+<div class="card">
+
+<div class="math-formula-image">
+
+<img src="image(3).png">
+
+</div>
+
+<p>• f(x) = Lower Curve</p>
+<p>• g(x) = Upper Curve</p>
+<p>• a and b are integration limits</p>
+
+</div>
+
+</section>
+
+<!-- SIMULATION -->
+
+<section class="section" id="simulation">
+
+<h2 class="section-title">Interactive Simulation</h2>
+
+<div class="card">
+
+<label>Upper Function</label>
+<input type="text" id="upper" value="x*x">
+
+<label>Lower Function</label>
+<input type="text" id="lower" value="2*x+3">
+
+<label>Lower Limit</label>
+<input type="number" id="a" value="-5">
+
+<label>Upper Limit</label>
+<input type="number" id="b" value="5">
+
+<button class="calc-btn" onclick="calculateArea()">
+Calculate Area
+</button>
+
+<div class="result" id="result"></div>
+
+<div>
+
+<button class="calc-btn" onclick="zoomIn()">Zoom In</button>
+<button class="calc-btn" onclick="zoomOut()">Zoom Out</button>
+<button class="calc-btn" onclick="resetZoom()">Reset</button>
+
+</div>
+
+<canvas id="graphCanvas"></canvas>
+
+</div>
+
+</section>
+
+<!-- QUIZ -->
+
+<section class="section" id="quiz">
+
+<h2 class="section-title">Quiz</h2>
+
+<div class="card">
+
+<div class="quiz-start">
+
+<button onclick="startQuiz()">
+
+Take Quiz
+
+</button>
+
+</div>
+
+<div id="quizInterface">
+
+<div class="score-box">
+Score: <span id="score">0</span>/20
+</div>
+
+<!-- QUESTION 1 -->
+
+<div class="question">
+
+<p><b>1. Double integration is mainly used for?</b></p>
+
+<button onclick="addMarks(this,true)">Area Calculation</button>
+<button onclick="addMarks(this,false)">Sorting</button>
+<button onclick="addMarks(this,false)">Searching</button>
+
+<button class="show-answer" onclick="showAnswer('a1')">
+
+Show Answer
+
+</button>
+
+<div class="answer-box" id="a1">
+Correct Answer: Area Calculation
+</div>
+
+</div>
+
+<!-- QUESTION 2 -->
+
+<div class="question">
+
+<p><b>2. What does dA represent?</b></p>
+
+<button onclick="addMarks(this,true)">Small Element of Area</button>
+<button onclick="addMarks(this,false)">Derivative</button>
+<button onclick="addMarks(this,false)">Distance</button>
+
+<button class="show-answer" onclick="showAnswer('a2')">
+Show Answer
+</button>
+
+<div class="answer-box" id="a2">
+Correct Answer: Small Element of Area
+</div>
+
+</div>
+
+<!-- QUESTION 3 -->
+
+<div class="question">
+
+<p><b>3. Intersection points are where?</b></p>
+
+<button onclick="addMarks(this,true)">Both Curves Meet</button>
+<button onclick="addMarks(this,false)">Axes Meet</button>
+<button onclick="addMarks(this,false)">Limits End</button>
+
+<button class="show-answer" onclick="showAnswer('a3')">
+Show Answer
+</button>
+
+<div class="answer-box" id="a3">
+Correct Answer: Both Curves Meet
+</div>
+
+</div>
+
+<!-- QUESTION 4 -->
+
+<div class="question">
+
+<p><b>4. Limits define?</b></p>
+
+<button onclick="addMarks(this,true)">Region of Integration</button>
+<button onclick="addMarks(this,false)">Matrix</button>
+<button onclick="addMarks(this,false)">Vector</button>
+
+<button class="show-answer" onclick="showAnswer('a4')">
+Show Answer
+</button>
+
+<div class="answer-box" id="a4">
+Correct Answer: Region of Integration
+</div>
+
+</div>
+
+<!-- QUESTION 5 -->
+
+<div class="question">
+
+<p><b>5. Numerical Question:</b></p>
+
+<p>
+If Upper Curve = x² and Lower Curve = 0,
+then area from x=0 to x=1 is?
+</p>
+
+<input type="number" id="numericalAns">
+
+<button onclick="checkNumerical()">
+
+Submit Numerical Answer
+
+</button>
+
+<button class="show-answer" onclick="showAnswer('a5')">
+Show Answer
+</button>
+
+<div class="answer-box" id="a5">
+Correct Answer: 0.33
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- VIVA -->
+
+<section class="section" id="viva">
+
+<h2 class="section-title">Viva Questions</h2>
+
+<div class="card">
+
+<p>1. What is Double Integration?</p>
+<p>2. Define bounded area.</p>
+<p>3. What is dA?</p>
+<p>4. Explain region of integration.</p>
+<p>5. Define limits of integration.</p>
+<p>6. What are intersection points?</p>
+<p>7. Applications of double integration?</p>
+<p>8. Difference between single and double integration?</p>
+<p>9. What is graphical representation?</p>
+<p>10. Why is bounded area important?</p>
+<p>11. Explain upper and lower curves.</p>
+<p>12. Can double integration be used in physics?</p>
+<p>13. What is the meaning of ∬ symbol?</p>
+<p>14. Explain area enclosed between curves.</p>
+<p>15. Importance of double integration in engineering.</p>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+
+Developed for PCCOE | Department of Engineering Mathematics
+
+</p>
+
+</footer>
+
+</div>
+
+<script>
+
+function enterWebsite(){
+
+document.getElementById("introPage").style.display="none";
+document.getElementById("mainWebsite").style.display="block";
+
+}
+
+let chart;
+
+function f(expr,x){
+
+return eval(expr);
+
+}
+
+function calculateArea(){
+
+let upper=document.getElementById("upper").value;
+let lower=document.getElementById("lower").value;
+
+let a=parseFloat(document.getElementById("a").value);
+let b=parseFloat(document.getElementById("b").value);
+
+let upperData=[];
+let lowerData=[];
+let shadedUpper=[];
+let shadedLower=[];
+
+let intersections=[];
+
+let area=0;
+
+for(let x=-20;x<=20;x+=0.1){
+
+upperData.push({x:x,y:f(upper,x)});
+lowerData.push({x:x,y:f(lower,x)});
+
+}
+
+for(let x=-20;x<=20;x+=0.01){
+
+let diff1=f(upper,x)-f(lower,x);
+let diff2=f(upper,x+0.01)-f(lower,x+0.01);
+
+if(diff1*diff2<0){
+
+intersections.push({
+x:x,
+y:f(upper,x)
+});
+
+}
+
+}
+
+for(let x=a;x<=b;x+=0.05){
+
+let y1=f(upper,x);
+let y2=f(lower,x);
+
+shadedUpper.push({x:x,y:y1});
+shadedLower.push({x:x,y:y2});
+
+area+=Math.abs(y1-y2)*0.05;
+
+}
+
+document.getElementById("result").innerHTML=
+"Approximate Area = "+area.toFixed(4);
+
+drawGraph(
+upperData,
+lowerData,
+shadedUpper,
+shadedLower,
+intersections
+);
+
+}
+
+function drawGraph(
+upperData,
+lowerData,
+shadedUpper,
+shadedLower,
+intersections
+){
+
+const ctx=document.getElementById('graphCanvas');
+
+if(chart){
+chart.destroy();
+}
+
+chart=new Chart(ctx,{
+
+type:'line',
+
+data:{
+
+datasets:[
+
+{
+label:'Upper Curve',
+data:upperData,
+borderColor:'blue',
+borderWidth:3,
+pointRadius:0
+},
+
+{
+label:'Lower Curve',
+data:lowerData,
+borderColor:'red',
+borderWidth:3,
+pointRadius:0
+},
+
+{
+label:'Bounded Area',
+data:shadedUpper,
+borderColor:'rgba(0,0,255,0)',
+backgroundColor:'rgba(0,150,255,0.3)',
+fill:'+1',
+pointRadius:0
+},
+
+{
+data:shadedLower,
+borderColor:'rgba(255,0,0,0)',
+pointRadius:0
+},
+
+{
+label:'Intersection Points',
+data:intersections,
+backgroundColor:'black',
+pointRadius:7,
+showLine:false
+}
+
+]
+
+},
+
+options:{
+
+responsive:true,
+
+plugins:{
+
+zoom:{
+
+pan:{
+enabled:true,
+mode:'xy'
+},
+
+zoom:{
+
+wheel:{
+enabled:true
+},
+
+pinch:{
+enabled:true
+},
+
+mode:'xy'
+}
+
+}
+
+},
+
+scales:{
+
+x:{
+
+type:'linear',
+
+min:-20,
+max:20,
+
+grid:{
+
+color:function(context){
+
+if(context.tick.value===0){
+return '#000';
+}
+
+return '#ccc';
+
+},
+
+lineWidth:function(context){
+
+if(context.tick.value===0){
+return 4;
+}
+
+return 1;
+
+}
+
+}
+
+},
+
+y:{
+
+min:-20,
+max:20,
+
+grid:{
+
+color:function(context){
+
+if(context.tick.value===0){
+return '#000';
+}
+
+return '#ccc';
+
+},
+
+lineWidth:function(context){
+
+if(context.tick.value===0){
+return 4;
+}
+
+return 1;
+
+}
+
+}
+
+}
+
+}
+
+}
+
+});
+
+}
+
+/* QUIZ */
+
+function startQuiz(){
+
+document.getElementById("quizInterface").style.display="block";
+
+}
+
+let score=0;
+
+function addMarks(button,correct){
+
+if(button.disabled) return;
+
+if(correct){
+
+score+=4;
+
+document.getElementById("score").innerHTML=score;
+
+}
+
+button.disabled=true;
+
+}
+
+function checkNumerical(){
+
+let ans=document.getElementById("numericalAns").value;
+
+if(ans=="0.33" || ans=="0.333"){
+
+score+=4;
+
+document.getElementById("score").innerHTML=score;
+
+alert("Correct!");
+
+}
+else{
+
+alert("Wrong!");
+
+}
+
+}
+
+function showAnswer(id){
+
+document.getElementById(id).style.display="block";
+
+}
+
+function zoomIn(){
+chart.zoom(1.2);
+}
+
+function zoomOut(){
+chart.zoom(0.8);
+}
+
+function resetZoom(){
+chart.resetZoom();
+}
+
+</script>
+
+</body>
+
+</html>
